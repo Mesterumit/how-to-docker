@@ -1,0 +1,16 @@
+# Ignore sample data files (they'll be mounted as volumes)
+*.csv
+
+# Ignore README
+README.md
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/

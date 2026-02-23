@@ -1,0 +1,339 @@
+Dockerfile Guide
+================
+
+A Dockerfile contains instructions executed in order to build an image. Understanding these instructions is key to creating effective containerized applications.
+
+Essential Instructions
+----------------------
+
+FROM
+~~~~
+
+Specifies the base image to build upon.
+
+.. code-block:: dockerfile
+
+   FROM python:3.11-slim
+
+**Best practice**: Use specific tags (``3.11-slim``) instead of ``latest`` for reproducibility.
+
+WORKDIR
+~~~~~~~
+
+Sets the working directory inside the container. All subsequent commands run from this directory.
+
+.. code-block:: dockerfile
+
+   WORKDIR /app
+
+**Tip**: Creates the directory if it doesn't exist.
+
+COPY
+~~~~
+
+Copies files from your host machine to the container.
+
+.. code-block:: dockerfile
+
+   COPY requirements.txt /app/
+   COPY . /app
+
+**Pattern**: Copy dependencies first, then code (for better caching).
+
+RUN
+~~~
+
+Executes commands during the image build process. Commonly used to install dependencies.
+
+.. code-block:: dockerfile
+
+   RUN pip install --no-cache-dir -r requirements.txt
+
+**Best practice**: Combine related commands with ``&&`` to reduce layers.
+
+CMD
+~~~
+
+Specifies the default command to run when a container starts.
+
+.. code-block:: dockerfile
+
+   CMD ["python", "app.py"]
+
+**Note**: Only one ``CMD`` per Dockerfile. Easily overridden at runtime.
+
+EXPOSE
+~~~~~~
+
+Documents which ports the container listens on.
+
+.. code-block:: dockerfile
+
+   EXPOSE 8080
+
+**Important**: This doesn't actually publish the port - use ``-p`` when running.
+
+ENV
+~~~
+
+Sets environment variables.
+
+.. code-block:: dockerfile
+
+   ENV PYTHONUNBUFFERED=1
+   ENV MODEL_PATH=/models
+
+USER
+~~~~
+
+Sets the user for running subsequent commands.
+
+.. code-block:: dockerfile
+
+   RUN useradd -m appuser
+   USER appuser
+
+**Security**: Never run as root in production!
+
+Complete Example
+----------------
+
+Here's a well-structured Dockerfile for an ML application:
+
+.. code-block:: dockerfile
+
+   # Use specific Python version
+   FROM python:3.11-slim
+
+   # Set working directory
+   WORKDIR /app
+
+   # Install system dependencies
+   RUN apt-get update && apt-get install -y \
+       git \
+       curl \
+       && rm -rf /var/lib/apt/lists/*
+
+   # Copy and install Python dependencies first (for caching)
+   COPY requirements.txt .
+   RUN pip install --no-cache-dir -r requirements.txt
+
+   # Copy application code
+   COPY . .
+
+   # Create non-root user
+   RUN useradd -m -s /bin/bash mluser && \
+       chown -R mluser:mluser /app
+   USER mluser
+
+   # Set environment variables
+   ENV PYTHONUNBUFFERED=1
+
+   # Expose port
+   EXPOSE 8000
+
+   # Run application
+   CMD ["python", "app.py"]
+
+Best Practices
+--------------
+
+Layer Caching
+~~~~~~~~~~~~~
+
+Docker caches each layer. Order instructions from least to most frequently changing:
+
+.. code-block:: dockerfile
+
+   # ✅ Good - dependencies change less often than code
+   FROM python:3.11-slim
+   COPY requirements.txt .
+   RUN pip install -r requirements.txt
+   COPY . .
+
+   # ❌ Bad - code changes invalidate dependency cache
+   FROM python:3.11-slim
+   COPY . .
+   RUN pip install -r requirements.txt
+
+Minimize Layers
+~~~~~~~~~~~~~~~
+
+Combine related ``RUN`` commands:
+
+.. code-block:: dockerfile
+
+   # ✅ Good - one layer
+   RUN apt-get update && \
+       apt-get install -y git curl && \
+       rm -rf /var/lib/apt/lists/*
+
+   # ❌ Bad - three layers
+   RUN apt-get update
+   RUN apt-get install -y git curl
+   RUN rm -rf /var/lib/apt/lists/*
+
+Use .dockerignore
+~~~~~~~~~~~~~~~~~
+
+Exclude unnecessary files from the build context:
+
+.. code-block:: text
+
+   # .dockerignore
+   __pycache__/
+   *.pyc
+   .git/
+   .venv/
+   *.md
+   .DS_Store
+
+Keep Images Small
+~~~~~~~~~~~~~~~~~
+
+.. code-block:: dockerfile
+
+   # Use slim/alpine variants
+   FROM python:3.11-slim  # ~120 MB
+   # vs
+   FROM python:3.11       # ~900 MB
+
+   # Clean up in same layer
+   RUN apt-get update && \
+       apt-get install -y curl && \
+       rm -rf /var/lib/apt/lists/*
+
+   # Use --no-cache-dir with pip
+   RUN pip install --no-cache-dir pandas
+
+Specific Tags
+~~~~~~~~~~~~~
+
+.. code-block:: dockerfile
+
+   # ✅ Good - reproducible
+   FROM python:3.11.5-slim
+
+   # ❌ Bad - breaks when "latest" updates
+   FROM python:latest
+
+Security
+~~~~~~~~
+
+.. code-block:: dockerfile
+
+   # Create and use non-root user
+   RUN groupadd -r appgroup && \
+       useradd -r -g appgroup appuser
+   USER appuser
+
+   # Don't expose unnecessary ports
+   # Only EXPOSE what's needed
+
+Multi-Stage Builds
+------------------
+
+For smaller production images:
+
+.. code-block:: dockerfile
+
+   # Build stage
+   FROM python:3.11 AS builder
+   WORKDIR /app
+   COPY requirements.txt .
+   RUN pip install --user --no-cache-dir -r requirements.txt
+
+   # Production stage
+   FROM python:3.11-slim
+   WORKDIR /app
+   COPY --from=builder /root/.local /root/.local
+   COPY . .
+   ENV PATH=/root/.local/bin:$PATH
+   CMD ["python", "app.py"]
+
+Common Patterns
+---------------
+
+ML Training Container
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: dockerfile
+
+   FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
+   WORKDIR /workspace
+   
+   COPY requirements.txt .
+   RUN pip install --no-cache-dir -r requirements.txt
+   
+   COPY train.py .
+   COPY data/ data/
+   
+   CMD ["python", "train.py"]
+
+Model Serving Container
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: dockerfile
+
+   FROM python:3.11-slim
+   WORKDIR /app
+   
+   COPY requirements.txt .
+   RUN pip install --no-cache-dir -r requirements.txt
+   
+   COPY model.pkl .
+   COPY serve.py .
+   
+   EXPOSE 8000
+   CMD ["uvicorn", "serve:app", "--host", "0.0.0.0", "--port", "8000"]
+
+Jupyter Notebook Container
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: dockerfile
+
+   FROM jupyter/scipy-notebook:latest
+   
+   COPY requirements.txt .
+   RUN pip install --no-cache-dir -r requirements.txt
+   
+   EXPOSE 8888
+   CMD ["jupyter", "lab", "--ip=0.0.0.0", "--allow-root"]
+
+Debugging Tips
+--------------
+
+Build with Verbose Output
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+   docker build --progress=plain --no-cache -t my-image .
+
+Inspect Intermediate Layers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+   # Get layer IDs
+   docker history my-image
+   
+   # Run shell in specific layer
+   docker run -it <layer-id> /bin/bash
+
+Check Build Context Size
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+   # See what's being sent to Docker daemon
+   docker build --no-cache -t test . 2>&1 | grep "Sending build context"
+
+Next Steps
+----------
+
+Now that you understand Dockerfiles, try building the examples:
+
+1. :doc:`/examples/01-data-cleaner` - Basic Dockerfile
+2. :doc:`/examples/02-streamlit-app` - Web app with port mapping
+3. :doc:`/examples/03-ml-dev-container` - Dev container configuration

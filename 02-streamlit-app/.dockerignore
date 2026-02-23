@@ -1,0 +1,19 @@
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore data files (will be mounted as volumes)
+*.csv
+data/
+
+# Ignore README
+README.md
+
+# Ignore Streamlit cache
+.streamlit/
