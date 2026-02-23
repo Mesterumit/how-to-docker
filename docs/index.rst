@@ -9,43 +9,19 @@ Welcome! This is a hands-on introduction to containerization designed specifical
    
    **Ready to start?** Head to :doc:`introduction/overview` to begin your journey into containerization.
 
-Table of Contents
------------------
-
 .. toctree::
    :maxdepth: 2
-   :caption: Getting Started
+   :caption: Tutorial
 
    introduction/overview
    introduction/concepts
    introduction/dockerfile-guide
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Hands-On Examples
-
    examples/01-data-cleaner
    examples/02-streamlit-app
    examples/03-ml-dev-container
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Guides
-
    guides/dev-containers
    guides/publishing-images
    guides/codespaces
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Resources
-
    resources/troubleshooting
    resources/next-steps
    resources/faq
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`search`

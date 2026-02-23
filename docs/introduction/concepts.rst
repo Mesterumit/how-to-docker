@@ -16,7 +16,46 @@ Container
 
 A running instance of an image. Containers are isolated processes that run your application. You can create many containers from a single image.
 
-**Analogy**: If an image is a class, a container is an instance of that class.
+**What a container actually is:**
+
+.. mermaid::
+
+   graph TB
+       subgraph "Host Machine"
+           K[Linux Kernel]
+           DE[Docker Engine]
+           
+           subgraph "Container 1"
+               P1[Process]
+               FS1[Filesystem<br/>from Image]
+               N1[Network<br/>Interface]
+               R1[Resources<br/>CPU/Memory]
+           end
+           
+           subgraph "Container 2"
+               P2[Process]
+               FS2[Filesystem<br/>from Image]
+               N2[Network<br/>Interface]
+               R2[Resources<br/>CPU/Memory]
+           end
+           
+           K -.shares kernel.-> P1
+           K -.shares kernel.-> P2
+           DE -->|manages| P1
+           DE -->|manages| P2
+           
+           P1 -.isolated via<br/>namespaces.-> P2
+       end
+
+A container is NOT a virtual machine. It's an isolated process on your host OS that:
+
+- **Shares the host kernel** (lightweight - no OS overhead)
+- **Has its own filesystem** (from the image)
+- **Has isolated networking** (own IP address, ports)
+- **Has resource limits** (controlled CPU, memory via cgroups)
+- **Cannot see other containers' processes** (namespace isolation)
+
+**Key difference from VMs**: Containers don't include a full operating system - they share the host's kernel but are isolated through Linux namespaces and cgroups.
 
 Dockerfile
 ~~~~~~~~~~

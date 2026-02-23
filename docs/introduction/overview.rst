@@ -54,29 +54,7 @@ Through three progressive examples, you'll:
 2. **Streamlit Dashboard** (5 min): An interactive web app showing port mapping and container networking
 3. **ML Dev Container** (10 min): Your own customized, publishable development environment for course projects
 
-Duration
---------
-
-**30-45 minutes** total:
-
-- 5 min: Introduction and prerequisites
-- 5 min: Docker concepts overview
-- 3 min: Example 1 - Data cleaner
-- 5 min: Example 2 - Streamlit app
-- 10 min: Example 3 - Dev container (hands-on)
-- 5 min: Publishing to Docker Hub
-- 5 min: Codespaces verification
-- 2-7 min: Q&A and next steps
-
-Who This Is For
----------------
-
-This tutorial is designed for:
-
-- **AI/ML bootcamp students** ready to move beyond notebooks
-- **Data scientists** wanting to productionize their workflows
-- **ML engineers** new to containerization
-- **Anyone** interested in reproducible ML development environments
+**Total time**: 30-45 minutes
 
 Prerequisites
 -------------
@@ -88,21 +66,6 @@ Before starting, ensure you have:
 - **VS Code** with Remote-Containers extension (optional but recommended)
 - **GitHub account** (for Codespaces verification)
 - Basic Python and command line knowledge
-
-Prerequisites Check
-~~~~~~~~~~~~~~~~~~~
-
-Make sure you have:
-
-.. code-block:: bash
-
-   # Check Docker is installed
-   docker --version
-   
-   # Check Docker is running
-   docker ps
-
-If Docker isn't installed, you'll need to install Docker Desktop before proceeding.
 
 Ready to Start?
 ---------------
