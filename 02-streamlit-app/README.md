@@ -20,8 +20,9 @@
 You've built an interactive data dashboard for your team. By containerizing it:
 - Team members can run it without installing Streamlit, pandas, or plotly
 - The app works identically on macOS, Windows, and Linux
-- You can deploy it to any cloud platform
+- You can deploy and scale it on any cloud platform
 - Multiple versions can run simultaneously on different ports
+- It can easily be updated and/or changed independently of other components
 
 ## Step-by-step instructions
 
@@ -44,7 +45,7 @@ CMD ["streamlit", "run", "app.py", ...]  # Run web server
 - `ENV`: Sets environment variables (tells Streamlit not to open a browser)
 - Multiple packages installed in one `RUN` command (faster build)
 
-### 2. Build the Image
+### 2. Build the image
 
 ```bash
 docker build -t streamlit-dashboard .
@@ -52,7 +53,7 @@ docker build -t streamlit-dashboard .
 
 This might take a minute as it installs Streamlit and dependencies.
 
-### 3. Run the Container with Port Mapping
+### 3. Run the container with port mapping
 
 ```bash
 docker run --rm -p 8501:8501 streamlit-dashboard
@@ -63,7 +64,7 @@ docker run --rm -p 8501:8501 streamlit-dashboard
 - Format is `-p HOST_PORT:CONTAINER_PORT`
 - Now you can access the containerized app via localhost
 
-### 4. Access the Dashboard
+### 4. Access the dashboard
 
 Open your browser and navigate to:
 
@@ -85,7 +86,7 @@ Try these features:
 - View correlation heatmap
 - Filter data with the slider
 
-### 6. Load Your Own Data (Optional)
+### 6. Load your own data (optional)
 
 You can upload a CSV file using the sidebar uploader, or mount data from the course repository.
 
@@ -99,7 +100,7 @@ docker run --rm -p 8501:8501 \
 
 Then modify the app to read from `/data/your-file.csv`.
 
-### 7. Run on a Different Port
+### 7. Run on a different port
 
 Stop the container (Ctrl+C) and try running on a different port:
 
@@ -112,7 +113,7 @@ Now access it at `http://localhost:8080`. Notice:
 - Host port 8080 maps to container port 8501
 - Multiple instances can run on different host ports
 
-### 8. Run in Detached Mode
+### 8. Run in detached mode
 
 Run the container in the background:
 

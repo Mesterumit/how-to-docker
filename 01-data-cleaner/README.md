@@ -41,7 +41,7 @@ CMD ["python", "clean_data.py"]  # Default command
 
 Each instruction creates a layer in the image. Docker caches layers, so rebuilds are fast when only later layers change.
 
-### 2. Build the Docker Image
+### 2. Build the Docker image
 
 From this directory, run:
 
@@ -55,7 +55,7 @@ docker build -t data-cleaner .
 
 Watch Docker execute each Dockerfile instruction and create layers.
 
-### 3. Verify the Image
+### 3. Verify the image
 
 List your Docker images:
 
@@ -65,7 +65,7 @@ docker images | grep data-cleaner
 
 You should see your newly created image with its size and creation time.
 
-### 4. Prepare Data Directory
+### 4. Prepare data directory
 
 Create directories for input and output:
 
@@ -74,7 +74,7 @@ mkdir -p data/input data/output
 cp sample_data.csv data/input/raw_data.csv
 ```
 
-### 5. Run the Container
+### 5. Run the container
 
 ```bash
 docker run --rm -v "$(pwd)/data:/data" data-cleaner
@@ -85,7 +85,7 @@ docker run --rm -v "$(pwd)/data:/data" data-cleaner
 - `-v "$(pwd)/data:/data"`: Mount your local `data/` directory to `/data` in the container
 - `data-cleaner`: The image to run
 
-### 6. Examine the Output
+### 6. Examine the output
 
 The script displays:
 - Original dataset statistics

@@ -34,7 +34,7 @@ From now on, anyone can start developing in seconds with the exact same environm
 
 ### Part 1: Build and test locally (3 minutes)
 
-#### 1. Examine the Dev Container Configuration
+#### 1. Examine the dev container configuration
 
 Open `.devcontainer/devcontainer.json`. This file tells VS Code how to create your development environment:
 
@@ -62,7 +62,7 @@ Open `.devcontainer/devcontainer.json`. This file tells VS Code how to create yo
 - `postCreateCommand`: Runs after container creation
 - `remoteUser`: Non-root user for security
 
-#### 2. Open in Container (VS Code Users)
+#### 2. Open in container (VS Code users)
 
 If you have VS Code with the Remote-Containers extension:
 
@@ -81,7 +81,7 @@ VS Code will reload inside the container!
 docker build -t ml-dev-env .
 ```
 
-#### 4. Test the Environment
+#### 4. Test the environment
 
 Run the test script:
 
@@ -121,7 +121,7 @@ python-dotenv>=1.0.0
 tqdm>=4.65.0
 ```
 
-#### 6. Add VS Code Extensions
+#### 6. Add VS Code extensions
 
 Edit `.devcontainer/devcontainer.json` to add more extensions:
 
@@ -143,7 +143,7 @@ Some popular extensions for ML:
 - `visualstudioexptteam.vscodeintellicode`: AI-assisted coding
 - `streetsidesoftware.code-spell-checker`: Spell checker
 
-#### 7. Rebuild with Customizations
+#### 7. Rebuild with customizations
 
 ```bash
 docker build -t ml-dev-env:v1.0 .
