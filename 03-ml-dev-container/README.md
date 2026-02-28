@@ -1,8 +1,8 @@
-# Example 3: ML Development Container
+# Example 3: ML development container
 
 **Time to complete**: ~10 minutes
 
-## Learning Objectives
+## Learning objectives
 
 - Create a VS Code development container
 - Customize a dev environment for ML work
@@ -11,7 +11,7 @@
 - Verify portability by launching in GitHub Codespaces
 - Understand how dev containers enable team collaboration
 
-## What's Included
+## What's included
 
 - `.devcontainer/devcontainer.json`: VS Code dev container configuration
 - `Dockerfile`: Container image definition with Python, git, and minimal ML packages
@@ -19,7 +19,7 @@
 - `test_environment.py`: Script to verify your setup works
 - `.dockerignore`: Files to exclude from builds
 
-## The Scenario
+## The scenario
 
 You're starting a new ML project with your team. Instead of everyone spending hours setting up Python, installing packages, and debugging dependency conflicts, you'll:
 
@@ -30,9 +30,9 @@ You're starting a new ML project with your team. Instead of everyone spending ho
 
 From now on, anyone can start developing in seconds with the exact same environment.
 
-## Step-by-Step Instructions
+## Step-by-step instructions
 
-### Part 1: Build and Test Locally (3 minutes)
+### Part 1: Build and test locally (3 minutes)
 
 #### 1. Examine the Dev Container Configuration
 
@@ -71,11 +71,11 @@ If you have VS Code with the Remote-Containers extension:
 3. Select "Dev Containers: Reopen in Container"
 4. Wait for the container to build (first time takes ~2 minutes)
 
-VS Code will reload inside the container! 🎉
+VS Code will reload inside the container!
 
 **OR** continue with manual Docker commands below.
 
-#### 3. Build the Image Manually
+#### 3. Build the image manually
 
 ```bash
 docker build -t ml-dev-env .
@@ -91,9 +91,9 @@ docker run --rm -v "$(pwd):/workspace" ml-dev-env python test_environment.py
 
 You should see output training a classifier on the iris dataset. If it works, your base environment is ready!
 
-### Part 2: Customize Your Environment (3 minutes)
+### Part 2: Customize your environment (3 minutes)
 
-#### 5. Add Your Preferred Packages
+#### 5. Add your preferred packages
 
 Edit `requirements.txt` to add packages you use regularly. Some suggestions:
 
@@ -188,11 +188,11 @@ This uploads your image to Docker Hub, making it publicly accessible!
 
 Visit `https://hub.docker.com/r/YOUR_DOCKERHUB_USERNAME/ml-dev-env` to see your published image.
 
-### Part 4: Verify Portability with GitHub Codespaces (2 minutes)
+### Part 4: Verify portability with GitHub Codespaces (2 minutes)
 
 Now for the ultimate test: proving your environment works anywhere!
 
-#### 12. Create a Test Repository
+#### 12. Create a test repository
 
 Create a new GitHub repository with just these files:
 
@@ -246,27 +246,22 @@ pip list
 
 You should see all your customized packages installed. Try creating a Python file and running some code!
 
-**🎉 Success!** You've proven your development environment is:
+**Success!** You've proven your development environment is:
 - Reproducible (same packages everywhere)
 - Portable (runs locally and in the cloud)
 - Shareable (anyone can use it via Docker Hub)
 - Collaborative (team members get identical setups)
 
-## Key Concepts Reinforced
+## Key concepts reinforced
 
-✅ **Dev containers**: Complete development environments as code
+- **Dev containers**: Complete development environments as code
+- **Image tagging**: Versioning with semantic tags (v1.0) and latest
+- **Docker Hub**: Publishing and sharing container images
+- **Portability**: The same environment runs locally, in Codespaces, on teammates' machines
+- **Customization**: Tailoring environments to your workflow
+- **Collaboration**: Eliminating "works on my machine" problems forever
 
-✅ **Image tagging**: Versioning with semantic tags (v1.0) and latest
-
-✅ **Docker Hub**: Publishing and sharing container images
-
-✅ **Portability**: The same environment runs locally, in Codespaces, on teammates' machines
-
-✅ **Customization**: Tailoring environments to your workflow
-
-✅ **Collaboration**: Eliminating "works on my machine" problems forever
-
-## Real-World ML Applications
+## Real-world ML applications
 
 This dev container pattern is used by:
 
@@ -276,7 +271,7 @@ This dev container pattern is used by:
 - **Bootcamps and courses** to eliminate setup problems
 - **Production pipelines** where training containers match dev environments exactly
 
-## Alternative Registries
+## Alternative registries
 
 While this tutorial uses Docker Hub, you can publish to:
 
@@ -294,7 +289,7 @@ While this tutorial uses Docker Hub, you can publish to:
 
 The workflow is the same—just different registry URLs!
 
-## Experiment Further
+## Experiment further
 
 1. **Add a Jupyter server**: Modify the Dockerfile to include `CMD ["jupyter", "lab"]`
 2. **Create team variants**: Make specialized containers (computer vision, NLP, time series)
@@ -314,19 +309,15 @@ The workflow is the same—just different registry URLs!
 
 **Push to Docker Hub fails**: Ensure you're logged in and have the correct permissions
 
-## What You've Accomplished
+## What you've accomplished
 
-🎯 Created a professional ML development container
+- Created a professional ML development container
+- Customized it with your preferred tools and extensions
+- Published your first Docker image to a public registry
+- Verified portability by launching in GitHub Codespaces
+- Learned the foundation for collaborative, reproducible ML workflows
 
-🎯 Customized it with your preferred tools and extensions
-
-🎯 Published your first Docker image to a public registry
-
-🎯 Verified portability by launching in GitHub Codespaces
-
-🎯 Learned the foundation for collaborative, reproducible ML workflows
-
-## Next Steps
+## Next steps
 
 You're now ready to:
 
@@ -344,4 +335,4 @@ You're now ready to:
 - Part 3 (Publish): ~2 min
 - Part 4 (Codespaces): ~2 min
 
-**Congratulations!** 🎉 You've completed the Docker tutorial. You now understand containerization fundamentals and have a production-ready development environment published and ready to use!
+**Congratulations!** You've completed the Docker tutorial. You now understand containerization fundamentals and have a production-ready development environment published and ready to use!

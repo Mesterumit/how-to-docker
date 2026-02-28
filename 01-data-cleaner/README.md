@@ -1,8 +1,8 @@
-# Example 1: Data Cleaner Container
+# Example 1: Data cleaner container
 
 **Time to complete**: ~3 minutes
 
-## Learning Objectives
+## Learning objectives
 
 - Understand the basic structure of a Dockerfile
 - Build your first Docker image
@@ -10,14 +10,14 @@
 - Use volume mounts to share data between host and container
 - See how containers enable modular ML pipeline components
 
-## What's Included
+## What's included
 
 - `clean_data.py`: A pandas-based data cleaning script
 - `Dockerfile`: Instructions to build the container image
 - `sample_data.csv`: Sample dataset with duplicates and missing values
 - `.dockerignore`: Files to exclude from the Docker build context
 
-## The Scenario
+## The scenario
 
 Imagine you're building a production ML pipeline. The data cleaning step is containerized as a separate component that can:
 - Run independently of other pipeline stages
@@ -25,17 +25,17 @@ Imagine you're building a production ML pipeline. The data cleaning step is cont
 - Be updated without affecting training or serving containers
 - Run consistently across development, staging, and production environments
 
-## Step-by-Step Instructions
+## Step-by-step instructions
 
 ### 1. Examine the Dockerfile
 
 Open `Dockerfile` and notice the structure:
 
 ```dockerfile
-FROM python:3.11-slim    # Start with Python base image
-WORKDIR /app             # Set working directory
-RUN pip install pandas   # Install dependencies
-COPY clean_data.py .     # Copy our script
+FROM python:3.11-slim            # Start with Python base image
+WORKDIR /app                     # Set working directory
+RUN pip install pandas           # Install dependencies
+COPY clean_data.py .             # Copy our script
 CMD ["python", "clean_data.py"]  # Default command
 ```
 
@@ -77,9 +77,7 @@ cp sample_data.csv data/input/raw_data.csv
 ### 5. Run the Container
 
 ```bash
-docker run --rm \
-  -v "$(pwd)/data:/data" \
-  data-cleaner
+docker run --rm -v "$(pwd)/data:/data" data-cleaner
 ```
 
 **What's happening**:
@@ -106,19 +104,15 @@ Notice:
 - Rows with missing values removed (David had no age, Eve had no score)
 - Whitespace trimmed (Frank's city "  Austin  " became "Austin")
 
-## Key Concepts Reinforced
+## Key concepts reinforced
 
-✅ **Dockerfile basics**: FROM, WORKDIR, RUN, COPY, CMD
+- **Dockerfile basics**: FROM, WORKDIR, RUN, COPY, CMD
+- **Image building**: Creating reusable templates for containers
+- **Volume mounts**: Sharing data between host and container
+- **Container isolation**: The script runs in its own environment with only pandas installed
+- **Modularity**: This component could be part of a larger pipeline, processing data before training
 
-✅ **Image building**: Creating reusable templates for containers
-
-✅ **Volume mounts**: Sharing data between host and container
-
-✅ **Container isolation**: The script runs in its own environment with only pandas installed
-
-✅ **Modularity**: This component could be part of a larger pipeline, processing data before training
-
-## Experiment Further
+## Experiment further
 
 Try these modifications:
 
@@ -127,7 +121,7 @@ Try these modifications:
 3. **Process different data**: Replace `sample_data.csv` with your own CSV file
 4. **Check container cleanup**: Run `docker ps -a` to verify `--rm` removed the container
 
-## What's Next?
+## What's next?
 
 In [02-streamlit-app](../02-streamlit-app/), you'll containerize an interactive web application and learn about port mapping to access apps running inside containers.
 

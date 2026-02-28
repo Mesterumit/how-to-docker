@@ -1,21 +1,21 @@
-# Example 2: Streamlit Dashboard Container
+# Example 2: Streamlit dashboard container
 
 **Time to complete**: ~5 minutes
 
-## Learning Objectives
+## Learning objectives
 
 - Containerize a web application (Streamlit)
 - Understand port mapping to access containerized apps
 - Use volumes to share data between host and container
 - See how containers make applications instantly portable
 
-## What's Included
+## What's included
 
 - `app.py`: An interactive Streamlit dashboard for data visualization
 - `Dockerfile`: Instructions to build the containerized app
 - `.dockerignore`: Files to exclude from the build
 
-## The Scenario
+## The scenario
 
 You've built an interactive data dashboard for your team. By containerizing it:
 - Team members can run it without installing Streamlit, pandas, or plotly
@@ -23,7 +23,7 @@ You've built an interactive data dashboard for your team. By containerizing it:
 - You can deploy it to any cloud platform
 - Multiple versions can run simultaneously on different ports
 
-## Step-by-Step Instructions
+## Step-by-step instructions
 
 ### 1. Examine the Dockerfile
 
@@ -71,11 +71,11 @@ Open your browser and navigate to:
 http://localhost:8501
 ```
 
-You should see the Data Insights Dashboard running! 🎉
+You should see the Data Insights Dashboard running!
 
 The app is running completely inside a container but accessible through your browser.
 
-### 5. Explore the Dashboard
+### 5. Explore the dashboard
 
 Try these features:
 - View the sample dataset
@@ -142,19 +142,15 @@ Stop it when done:
 docker stop my-dashboard
 ```
 
-## Key Concepts Reinforced
+## Key concepts reinforced
 
-✅ **Port mapping**: Exposing containerized applications to your host machine
+- **Port mapping**: Exposing containerized applications to your host machine
+- **Web application containers**: Running interactive apps in isolation
+- **Environment variables**: Configuring containers at runtime
+- **Detached mode**: Running containers in the background
+- **Container naming**: Managing multiple containers easily
 
-✅ **Web application containers**: Running interactive apps in isolation
-
-✅ **Environment variables**: Configuring containers at runtime
-
-✅ **Detached mode**: Running containers in the background
-
-✅ **Container naming**: Managing multiple containers easily
-
-## Use Cases for ML/Data Science
+## Use cases for ML/data science
 
 This pattern is perfect for:
 - **Model demos**: Quickly share model predictions with stakeholders
@@ -163,14 +159,14 @@ This pattern is perfect for:
 - **Experiment tracking**: Visualize training metrics
 - **Data validation**: Interactive tools for checking data quality
 
-## Experiment Further
+## Experiment further
 
 1. **Modify the dashboard**: Edit `app.py` to add new visualizations
 2. **Rebuild and see changes**: Rebuild the image and restart the container
-3. **Link to Example 1**: Mount the cleaned data from the first example
+3. **Link to example 1**: Mount the cleaned data from the first example
 4. **Multiple instances**: Run the same container on ports 8501, 8502, 8503 simultaneously
 
-## What's Next?
+## What's next?
 
 In [03-ml-dev-container](../03-ml-dev-container/), you'll build a complete development environment container, customize it for ML work, publish it to Docker Hub, and launch it in GitHub Codespaces!
 
