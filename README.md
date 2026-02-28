@@ -1,35 +1,35 @@
-# Docker for AI/ML Bootcamp
+# Docker for AI/ML
 
-A hands-on introduction to containerization for machine learning and data science workflows.
+A hands-on introduction to containerization for AI/ML.
 
-## 🚀 Quick Start
+## Quick start
 
-This tutorial is designed as a 30-45 minute hands-on introduction to Docker for AI/ML bootcamp students. It covers containerization fundamentals through three progressive examples, culminating in creating and publishing your own ML development environment.
+This 30-45 minute hands-on introduction to Docker for AI/ML covers containerization fundamentals through three progressive examples, culminating in creating and publishing your own ML development environment.
 
-## 📚 Tutorial Site
+## Tutorial site
 
 Visit the full tutorial at: **[GitHub Pages Site](https://siderealyear.github.io/how-to-docker/)**
 
-## 📋 What You'll Learn
+## What you'll learn
 
-1. **Docker Basics**: Images, containers, Dockerfiles, and key concepts
-2. **Building Containers**: From simple scripts to web applications
-3. **Development Containers**: Creating portable, shareable ML development environments
-4. **Publishing Images**: Sharing your work via Docker Hub
+1. **Docker basics**: Images, containers, Dockerfiles, and key concepts
+2. **Building containers**: From simple scripts to web applications
+3. **Development containers**: Creating portable, shareable ML development environments
+4. **Publishing images**: Sharing your work via Docker Hub
 5. **Portability**: Verifying your environment works anywhere (GitHub Codespaces)
 
-## 🎯 Learning Objectives
+## Learning objectives
 
 By the end of this tutorial, you will:
 
-- ✅ Understand why containerization matters for ML engineering
-- ✅ Build Docker images from Dockerfiles
-- ✅ Run containerized applications with volume mounts and port mapping
-- ✅ Create a VS Code development container for ML projects
-- ✅ Publish container images to Docker Hub
-- ✅ Launch your environment in GitHub Codespaces
+- Understand why containerization matters for ML engineering
+- Build Docker images from Dockerfiles
+- Run containerized applications with volume mounts and port mapping
+- Create a VS Code development container for ML projects
+- Publish container images to Docker Hub
+- Launch your environment in GitHub Codespaces
 
-## 📂 Repository Structure
+## Repository structure
 
 ```
 .
@@ -40,9 +40,9 @@ By the end of this tutorial, you will:
 └── 03-ml-dev-container/     # Example 3: ML dev environment (10 min)
 ```
 
-## ⚡ Quick Examples
+## Quick examples
 
-### Example 1: Data Cleaner (3 minutes)
+### Example 1: Data cleaner (3 minutes)
 Build a containerized pandas-based data cleaning script—a modular component for ML pipelines.
 
 ```bash
@@ -51,7 +51,7 @@ docker build -t data-cleaner .
 docker run --rm -v "$(pwd)/data:/data" data-cleaner
 ```
 
-### Example 2: Streamlit App (5 minutes)
+### Example 2: Streamlit app (5 minutes)
 Run an interactive data visualization dashboard in a container.
 
 ```bash
@@ -61,7 +61,7 @@ docker run --rm -p 8501:8501 streamlit-dashboard
 # Visit http://localhost:8501
 ```
 
-### Example 3: ML Dev Container (10 minutes)
+### Example 3: ML dev container (10 minutes)
 Create, customize, and publish your own ML development environment.
 
 ```bash
@@ -72,7 +72,7 @@ docker push YOUR_USERNAME/ml-dev-env:v1.0
 # Launch in GitHub Codespaces to verify!
 ```
 
-## 🔧 Prerequisites
+## Prerequisites
 
 - Docker Desktop installed ([Get Docker](https://www.docker.com/products/docker-desktop/))
 - Docker Hub account ([Sign up](https://hub.docker.com/signup))
@@ -80,7 +80,7 @@ docker push YOUR_USERNAME/ml-dev-env:v1.0
 - GitHub account (for Codespaces verification)
 - Basic Python and command line knowledge
 
-## 🌐 GitHub Pages Setup
+## GitHub Pages setup
 
 To enable the tutorial website:
 
@@ -91,15 +91,43 @@ To enable the tutorial website:
 
 The site will be available at: `https://siderealyear.github.io/how-to-docker/`
 
-## 🎓 For Instructors
+## Building documentation locally
 
-This tutorial is designed for:
+To build and preview the documentation on your local machine:
+
+1. Create a Python virtual environment and install dependencies:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install -r docs/requirements.txt
+```
+
+2. Build the documentation:
+
+```bash
+cd docs
+sphinx-build -b html . _build/html
+```
+
+3. Serve the documentation locally:
+
+```bash
+cd _build/html
+python -m http.server 8000
+```
+
+4. Open your browser and navigate to `http://localhost:8000`
+
+The documentation will rebuild when you run `sphinx-build` again. To rebuild and view changes, repeat steps 2-4.
+
+## For instructors
+
 - **Duration**: 30-45 minute hands-on session
-- **Audience**: AI/ML bootcamp students transitioning from notebooks to application development
 - **Format**: Instructor-led demo with hands-on exercises
 - **Completion goal**: Students build and publish their own dev container
 
-### Suggested Timeline
+### Suggested timeline
 
 - **5 min**: Introduction and prerequisites check
 - **5 min**: Conceptual overview (why containers, production ML architecture)
@@ -110,19 +138,19 @@ This tutorial is designed for:
 - **5 min**: Codespaces verification
 - **2-7 min**: Q&A and next steps
 
-## 📖 Next Steps
+## Next steps
 
 After completing this tutorial, explore:
 
 - **Docker Compose**: Multi-container applications (database + API + model)
 - **Kubernetes**: Container orchestration for production ML systems
 - **CI/CD**: Automated container building and deployment
-- **Model Serving**: TensorFlow Serving, TorchServe in containers
+- **Model serving**: TensorFlow Serving, TorchServe in containers
 
-## 🤝 Contributing
+## Contributing
 
 Found an issue or have a suggestion? Feel free to open an issue or submit a pull request!
 
-## 📄 License
+## License
 
 This tutorial is open source and available for educational use.
