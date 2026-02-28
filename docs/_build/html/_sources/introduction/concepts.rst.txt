@@ -102,6 +102,24 @@ Exposing container ports to your host machine, allowing you to access web apps o
 
 **Syntax**: ``-p HOST_PORT:CONTAINER_PORT``
 
+Docker workflow
+---------------
+
+.. code-block:: text
+
+   Write Dockerfile → Build image → Run container → Test → Tag → Push → Deploy
+
+.. mermaid::
+
+   %%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#e3f2fd','primaryTextColor':'#000000','primaryBorderColor':'#000000','lineColor':'#000000','secondaryColor':'#fff3e0','tertiaryColor':'#f1f8e9','fontSize':'26px'}}}%%
+   graph LR
+       A[Write Dockerfile] --> B[Build Image]
+       B --> C[Run Container]
+       C --> D[Test & Develop]
+       D --> E[Tag Image]
+       E --> F[Push to Registry]
+       F --> G[Pull & Deploy Anywhere]
+
 Common commands
 ---------------
 

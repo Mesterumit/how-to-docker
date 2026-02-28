@@ -233,39 +233,23 @@ Security
 Multi-stage builds
 ------------------
 
-Multi-stage builds allow you to use multiple ``FROM`` statements in a single Dockerfile. Each stage can use a different base image and you can selectively copy artifacts from one stage to another, leaving behind everything you don't need in the final image.
-
-**Why use multi-stage builds:**
-
-- **Smaller production images**: Build dependencies (compilers, dev tools) stay in build stage, only runtime files go to production
-- **Security**: Reduce attack surface by excluding build tools and source code from final image
-- **Build optimization**: Use full-featured images for building, slim images for running
-- **Separation of concerns**: Keep build logic separate from runtime configuration
-
-**Common use case**: You need ``gcc``, ``make``, or other build tools to compile dependencies, but don't want them in your production image.
-
-Example for smaller production images:
+For smaller production images:
 
 .. code-block:: dockerfile
 
-   # Build stage - uses full Python image with build tools
+   # Build stage
    FROM python:3.11 AS builder
    WORKDIR /app
    COPY requirements.txt .
-   # Install packages to user's local directory
    RUN pip install --user --no-cache-dir -r requirements.txt
 
-   # Production stage - uses slim image (120MB vs 900MB)
+   # Production stage
    FROM python:3.11-slim
    WORKDIR /app
-   # Copy only installed packages from builder stage
    COPY --from=builder /root/.local /root/.local
-   # Copy application code
    COPY . .
    ENV PATH=/root/.local/bin:$PATH
    CMD ["python", "app.py"]
-
-**Result**: Final image is ~300MB instead of ~1.2GB, includes only runtime dependencies, no pip cache or build tools.
 
 Common patterns
 ---------------

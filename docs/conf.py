@@ -1,7 +1,7 @@
 # Configuration file for the Sphinx documentation builder.
 
 # -- Project information -----------------------------------------------------
-project = 'Docker for AI/ML Bootcamp'
+project = 'Docker for AI/ML'
 copyright = '2026, Docker Tutorial Contributors'
 author = 'Docker Tutorial Contributors'
 
