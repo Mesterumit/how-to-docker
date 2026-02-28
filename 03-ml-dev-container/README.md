@@ -4,10 +4,10 @@
 
 ## Learning objectives
 
-- Create a VS Code development container
-- Customize a dev environment for ML work
-- Build and tag Docker images with semantic versioning
+- Build and customize a Docker image for ML development
+- Tag Docker images with semantic versioning
 - Publish images to Docker Hub
+- Use a pre-built image as a VS Code development container
 - Verify portability by launching in GitHub Codespaces
 - Understand how dev containers enable team collaboration
 
@@ -32,58 +32,41 @@ From now on, anyone can start developing in seconds with the exact same environm
 
 ## Step-by-step instructions
 
-### Part 1: Build and test locally (3 minutes)
+### Part 1: Build and test your development image (3 minutes)
 
-#### 1. Examine the dev container configuration
+#### 1. Examine the Dockerfile
 
-Open `.devcontainer/devcontainer.json`. This file tells VS Code how to create your development environment:
+Open `Dockerfile` and notice the structure - similar to examples 1 and 2, but designed for development:
 
-```json
-{
-  "name": "ML Development Environment",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
-  "customizations": {
-    "vscode": {
-      "extensions": ["ms-python.python", "ms-python.vscode-pylance"]
-    }
-  },
-  "forwardPorts": [8888, 8501],
-  "postCreateCommand": "pip install --user -r requirements.txt",
-  "remoteUser": "devuser"
-}
+```dockerfile
+FROM python:3.11-slim
+WORKDIR /workspace
+RUN apt-get update && apt-get install -y git curl && rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir pandas numpy scikit-learn
+RUN useradd -m -s /bin/bash devuser && chown -R devuser:devuser /workspace
+USER devuser
+ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
+CMD ["/bin/bash"]
 ```
 
-**Key elements**:
-- `dockerfile`: Points to the Dockerfile to build
-- `extensions`: VS Code extensions to auto-install
-- `forwardPorts`: Ports to expose (Jupyter: 8888, Streamlit: 8501)
-- `postCreateCommand`: Runs after container creation
-- `remoteUser`: Non-root user for security
+**New concepts**:
+- `apt-get install`: Installing system packages (git, curl) not just Python packages
+- `useradd`: Creating a non-root user for security
+- `USER`: Switching to that user
+- `CMD ["/bin/bash"]`: Opens a shell instead of running a specific script
 
-#### 2. Open in container (VS Code users)
-
-If you have VS Code with the Remote-Containers extension:
-
-1. Open this folder in VS Code
-2. Press `F1` (or `Cmd/Ctrl+Shift+P`)
-3. Select "Dev Containers: Reopen in Container"
-4. Wait for the container to build (first time takes ~2 minutes)
-
-VS Code will reload inside the container!
-
-**OR** continue with manual Docker commands below.
-
-#### 3. Build the image manually
+#### 2. Build the image
 
 ```bash
 docker build -t ml-dev-env .
 ```
 
-#### 4. Test the environment
+This builds your development environment image.
 
-Run the test script:
+#### 3. Test the environment
+
+Run the test script to verify everything works:
 
 ```bash
 docker run --rm -v "$(pwd):/workspace" ml-dev-env python test_environment.py
@@ -91,7 +74,22 @@ docker run --rm -v "$(pwd):/workspace" ml-dev-env python test_environment.py
 
 You should see output training a classifier on the iris dataset. If it works, your base environment is ready!
 
-### Part 2: Customize your environment (3 minutes)
+#### 4. Try interactive development
+
+Run the container interactively:
+
+```bash
+docker run --rm -it -v "$(pwd):/workspace" ml-dev-env
+```
+
+You're now inside the container with a bash shell! Try:
+- `python --version`
+- `pip list`
+- `python test_environment.py`
+
+Type `exit` to leave the container.
+
+### Part 2: Customize your environment (2 minutes)
 
 #### 5. Add your preferred packages
 
@@ -121,39 +119,25 @@ python-dotenv>=1.0.0
 tqdm>=4.65.0
 ```
 
-#### 6. Add VS Code extensions
+Add a `RUN` command to the Dockerfile to install these:
 
-Edit `.devcontainer/devcontainer.json` to add more extensions:
-
-```json
-"extensions": [
-  "ms-python.python",
-  "ms-python.vscode-pylance",
-  "ms-toolsai.jupyter",
-  "ms-toolsai.vscode-jupyter-cell-tags",
-  "ms-toolsai.vscode-jupyter-slideshow",
-  "esbenp.prettier-vscode",
-  "eamodio.gitlens"
-]
+```dockerfile
+# After the existing pip install line, add:
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 ```
 
-Some popular extensions for ML:
-- `ms-toolsai.jupyter`: Jupyter notebook support
-- `donjayamanne.githistory`: Git history visualization  
-- `visualstudioexptteam.vscodeintellicode`: AI-assisted coding
-- `streetsidesoftware.code-spell-checker`: Spell checker
-
-#### 7. Rebuild with customizations
+#### 6. Rebuild with customizations
 
 ```bash
 docker build -t ml-dev-env:v1.0 .
 ```
 
-Note: We're now tagging with a version number!
+Note: We're now tagging with a version number using semantic versioning!
 
 ### Part 3: Publish to Docker Hub (2 minutes)
 
-#### 8. Tag for Docker Hub
+#### 7. Tag for Docker Hub
 
 Replace `YOUR_DOCKERHUB_USERNAME` with your actual username:
 
@@ -167,7 +151,7 @@ docker tag ml-dev-env:v1.0 YOUR_DOCKERHUB_USERNAME/ml-dev-env:latest
 - `latest`: Convention for the most recent stable version
 - Best practice: Push both so users can pin to a version or use latest
 
-#### 9. Login to Docker Hub
+#### 8. Login to Docker Hub
 
 ```bash
 docker login
@@ -175,7 +159,7 @@ docker login
 
 Enter your Docker Hub credentials when prompted.
 
-#### 10. Push to Docker Hub
+#### 9. Push to Docker Hub
 
 ```bash
 docker push YOUR_DOCKERHUB_USERNAME/ml-dev-env:v1.0
@@ -184,15 +168,57 @@ docker push YOUR_DOCKERHUB_USERNAME/ml-dev-env:latest
 
 This uploads your image to Docker Hub, making it publicly accessible!
 
-#### 11. Verify on Docker Hub
+#### 10. Verify on Docker Hub
 
 Visit `https://hub.docker.com/r/YOUR_DOCKERHUB_USERNAME/ml-dev-env` to see your published image.
 
-### Part 4: Verify portability with GitHub Codespaces (2 minutes)
+### Part 4: Use your image as a VS Code dev container (2 minutes)
+
+**New concept**: Instead of running containers manually, VS Code can use your image as a complete development environment with your editor, extensions, and tools integrated.
+
+#### 11. Examine the dev container configuration
+
+Open `.devcontainer/devcontainer.json`:
+
+```json
+{
+  "name": "ML Development Environment",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "ms-python.vscode-pylance"]
+    }
+  },
+  "forwardPorts": [8888, 8501],
+  "postCreateCommand": "pip install --user -r requirements.txt",
+  "remoteUser": "devuser"
+}
+```
+
+**Key elements**:
+- `dockerfile`: Points to your Dockerfile (uses the image you just built)
+- `extensions`: VS Code extensions to auto-install in the container
+- `forwardPorts`: Ports to expose (Jupyter: 8888, Streamlit: 8501)
+- `remoteUser`: Run as the non-root user you created
+
+#### 12. Open in VS Code dev container (optional)
+
+If you have VS Code with the Remote-Containers extension:
+
+1. Open this folder in VS Code
+2. Press `F1` (or `Cmd/Ctrl+Shift+P`)
+3. Select "Dev Containers: Reopen in Container"
+4. Wait for VS Code to reload
+
+VS Code now runs inside your container! Any code you write, any terminal commands you run, all happen in the containerized environment. But it feels like normal VS Code.
+
+### Part 5: Verify portability with GitHub Codespaces (1 minute)
 
 Now for the ultimate test: proving your environment works anywhere!
 
-#### 12. Create a test repository
+#### 13. Create a test repository
 
 Create a new GitHub repository with just these files:
 
@@ -217,12 +243,13 @@ In `.devcontainer/devcontainer.json`, reference your published image:
       ]
     }
   },
-  "forwardPorts": [8888, 8501],
-  "postCreateCommand": "echo '🎉 Environment ready!'"
+  "forwardPorts": [8888, 8501]
 }
 ```
 
-#### 13. Launch GitHub Codespace
+Note: Instead of `"build": {"dockerfile": "Dockerfile"}`, we now use `"image"` pointing to your published image!
+
+#### 14. Launch GitHub Codespace
 
 1. Go to your repository on GitHub
 2. Click the green "Code" button
@@ -235,7 +262,7 @@ GitHub will:
 - Launch VS Code in your browser
 - Have your exact environment ready in ~30 seconds!
 
-#### 14. Test in Codespace
+#### 15. Test in Codespace
 
 In the Codespace terminal, verify your environment:
 
@@ -252,12 +279,13 @@ You should see all your customized packages installed. Try creating a Python fil
 - Shareable (anyone can use it via Docker Hub)
 - Collaborative (team members get identical setups)
 
-## Key concepts reinforced
+## Key concepts
 
-- **Dev containers**: Complete development environments as code
+- **Building development images**: Creating containers optimized for coding, not just running apps
 - **Image tagging**: Versioning with semantic tags (v1.0) and latest
 - **Docker Hub**: Publishing and sharing container images
-- **Portability**: The same environment runs locally, in Codespaces, on teammates' machines
+- **Dev containers**: Using Docker images as complete VS Code development environments
+- **Portability**: The same environment runs locally, in VS Code, in Codespaces, on teammates' machines
 - **Customization**: Tailoring environments to your workflow
 - **Collaboration**: Eliminating "works on my machine" problems forever
 
@@ -331,8 +359,9 @@ You're now ready to:
 
 **Time check**: This example targets 10 minutes total:
 - Part 1 (Build & test): ~3 min
-- Part 2 (Customize): ~3 min  
+- Part 2 (Customize): ~2 min  
 - Part 3 (Publish): ~2 min
-- Part 4 (Codespaces): ~2 min
+- Part 4 (Dev containers): ~2 min
+- Part 5 (Codespaces): ~1 min
 
 **Congratulations!** You've completed the Docker tutorial. You now understand containerization fundamentals and have a production-ready development environment published and ready to use!

@@ -143,7 +143,7 @@ Stop it when done:
 docker stop my-dashboard
 ```
 
-## Key concepts reinforced
+## Key concepts
 
 - **Port mapping**: Exposing containerized applications to your host machine
 - **Web application containers**: Running interactive apps in isolation
