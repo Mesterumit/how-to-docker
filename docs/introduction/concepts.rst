@@ -127,14 +127,22 @@ Running containers
    # Run with port mapping
    docker run -p 8080:80 my-image
    
-   # Run with volume mount
+   # Run with volume mount (Linux/macOS)
    docker run -v $(pwd):/app my-image
+   
+   # Run with volume mount (Windows PowerShell)
+   docker run -v ${PWD}:/app my-image
+   
+   # Run with volume mount (Windows Command Prompt)
+   docker run -v %cd%:/app my-image
    
    # Run in detached mode
    docker run -d --name my-container my-image
    
    # Run interactively with shell
    docker run -it my-image /bin/bash
+
+**Note for Windows users**: When using volume mounts with absolute paths, use forward slashes and include the drive letter: ``-v C:/Users/yourname/project:/app``
 
 Managing containers
 ~~~~~~~~~~~~~~~~~~~
