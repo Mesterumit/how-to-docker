@@ -33,11 +33,19 @@ By the end of this tutorial, you will:
 
 ```
 .
-├── index.md                  # Main tutorial content (GitHub Pages)
-├── _config.yml              # GitHub Pages configuration
-├── 01-data-cleaner/         # Example 1: Containerized data processing (3 min)
-├── 02-streamlit-app/        # Example 2: Containerized web app (5 min)
-└── 03-ml-dev-container/     # Example 3: ML dev environment (10 min)
+├── docs/                    # Sphinx documentation source
+│   ├── conf.py             # Sphinx configuration
+│   ├── index.rst           # Documentation landing page
+│   ├── overview.rst        # Tutorial overview
+│   ├── concepts.rst        # Docker fundamentals
+│   ├── dockerfile-guide.rst # Dockerfile reference
+│   └── requirements.txt    # Sphinx build dependencies
+├── .github/
+│   └── workflows/
+│       └── deploy-docs.yml # GitHub Actions workflow for docs
+├── 01-data-cleaner/        # Example 1: Containerized data processing (3 min)
+├── 02-streamlit-app/       # Example 2: Containerized web app (5 min)
+└── 03-ml-dev-container/    # Example 3: ML dev environment (10 min)
 ```
 
 ## Quick examples
@@ -120,23 +128,6 @@ python -m http.server 8000
 4. Open your browser and navigate to `http://localhost:8000`
 
 The documentation will rebuild when you run `sphinx-build` again. To rebuild and view changes, repeat steps 2-4.
-
-## For instructors
-
-- **Duration**: 30-45 minute hands-on session
-- **Format**: Instructor-led demo with hands-on exercises
-- **Completion goal**: Students build and publish their own dev container
-
-### Suggested timeline
-
-- **5 min**: Introduction and prerequisites check
-- **5 min**: Conceptual overview (why containers, production ML architecture)
-- **3 min**: Example 1 walkthrough (data cleaner)
-- **5 min**: Example 2 walkthrough (Streamlit app)
-- **10 min**: Example 3 hands-on (dev container customization)
-- **5 min**: Docker Hub publishing
-- **5 min**: Codespaces verification
-- **2-7 min**: Q&A and next steps
 
 ## Next steps
 

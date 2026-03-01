@@ -2,8 +2,8 @@
 
 # -- Project information -----------------------------------------------------
 project = 'Docker for AI/ML'
-copyright = '2026, Docker Tutorial Contributors'
-author = 'Docker Tutorial Contributors'
+copyright = '2026, Dr. George Perdrizet'
+author = 'Dr. George Perdrizet'
 
 # -- General configuration ---------------------------------------------------
 extensions = [
