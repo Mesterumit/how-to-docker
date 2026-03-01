@@ -262,6 +262,7 @@ Open ``.devcontainer/devcontainer.json``:
 - ``dockerfile``: Points to your Dockerfile (uses the image you just built)
 - ``extensions``: VS Code extensions to auto-install in the container
 - ``forwardPorts``: Ports to expose (Jupyter: 8888, Streamlit: 8501)
+- ``postCreateCommand``: Runs after container creation (installs Python packages)
 - ``remoteUser``: Run as the non-root user you created
 
 12. Open in VS Code dev container (optional)
@@ -401,15 +402,11 @@ Experiment further
 Troubleshooting
 ---------------
 
-**Build fails**: Check Dockerfile syntax, ensure package names are correct
-
-**Extensions don't install**: Verify extension IDs are correct in devcontainer.json
-
-**Port forwarding doesn't work**: Check ``forwardPorts`` array includes the port you need
-
-**Codespace fails to create**: Verify image name in devcontainer.json matches Docker Hub exactly
-
-**Push to Docker Hub fails**: Ensure you're logged in and have the correct permissions
+- **Build fails**: Check Dockerfile syntax, ensure package names are correct
+- **Extensions don't install**: Verify extension IDs are correct in devcontainer.json
+- **Port forwarding doesn't work**: Check ``forwardPorts`` array includes the port you need
+- **Codespace fails to create**: Verify image name in devcontainer.json matches Docker Hub exactly
+- **Push to Docker Hub fails**: Ensure you're logged in and have the correct permissions
 
 What you've accomplished
 ------------------------
@@ -431,6 +428,7 @@ You're now ready to:
 - Build containers for model training and serving
 - Create CI/CD pipelines that build and push containers automatically
 
----
+Congratulations!
+----------------
 
-**Congratulations!** You've completed the Docker tutorial. You now understand containerization fundamentals and have a production-ready development environment published and ready to use!
+You've completed the Docker tutorial. You now understand containerization fundamentals and have a production-ready development environment published and ready to use!

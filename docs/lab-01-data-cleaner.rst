@@ -172,8 +172,8 @@ Notice:
 - Rows with missing values removed (David had no age, Eve had no score)
 - Whitespace trimmed (Frank's city "  Austin  " became "Austin")
 
-Key concepts reinforced
------------------------
+Key concepts
+------------
 
 - **Dockerfile basics**: FROM, WORKDIR, RUN, COPY, CMD
 - **Image building**: Creating reusable templates for containers
