@@ -1,2 +1,22 @@
 .venv
 .vscode
+
+# Sphinx documentation build artifacts
+docs/_build/
+docs/_static/
+docs/_templates/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# IDE
+.idea/
