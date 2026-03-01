@@ -4,7 +4,7 @@ A hands-on introduction to containerization for AI/ML.
 
 ## Quick start
 
-This 30-45 minute hands-on introduction to Docker for AI/ML covers containerization fundamentals through three progressive examples, culminating in creating and publishing your own ML development environment.
+This hands-on introduction to Docker for AI/ML (~1 hour) covers containerization fundamentals through three progressive labs, culminating in creating and publishing your own ML development environment.
 
 ## Tutorial site
 
@@ -31,27 +31,28 @@ By the end of this tutorial, you will:
 
 ## Repository structure
 
-```
+```text
 .
 ├── docs/                    # Sphinx documentation source
-│   ├── conf.py             # Sphinx configuration
-│   ├── index.rst           # Documentation landing page
-│   ├── overview.rst        # Tutorial overview
-│   ├── concepts.rst        # Docker fundamentals
+│   ├── conf.py              # Sphinx configuration
+│   ├── index.rst            # Documentation landing page
+│   ├── overview.rst         # Tutorial overview
+│   ├── concepts.rst         # Docker fundamentals
 │   ├── dockerfile-guide.rst # Dockerfile reference
-│   └── requirements.txt    # Sphinx build dependencies
+│   └── requirements.txt     # Sphinx build dependencies
 ├── .github/
 │   └── workflows/
-│       └── deploy-docs.yml # GitHub Actions workflow for docs
-├── 01-data-cleaner/        # Example 1: Containerized data processing (3 min)
-├── 02-streamlit-app/       # Example 2: Containerized web app (5 min)
-└── 03-ml-dev-container/    # Example 3: ML dev environment (10 min)
+│       └── deploy-docs.yml  # GitHub Actions workflow for docs
+├── 01-data-cleaner/         # Lab 1: Containerized data processing
+├── 02-streamlit-app/        # Lab 2: Containerized web app
+└── 03-ml-dev-container/     # Lab 3: ML dev environment
 ```
 
-## Quick examples
+## Hands-on labs
 
-### Example 1: Data cleaner (3 minutes)
-Build a containerized pandas-based data cleaning script—a modular component for ML pipelines.
+### Lab 1: Data cleaner
+
+Build a containerized Pandas-based data cleaning script - a modular component for ML pipelines.
 
 ```bash
 cd 01-data-cleaner
@@ -59,7 +60,8 @@ docker build -t data-cleaner .
 docker run --rm -v "$(pwd)/data:/data" data-cleaner
 ```
 
-### Example 2: Streamlit app (5 minutes)
+### Lab 2: Streamlit app
+
 Run an interactive data visualization dashboard in a container.
 
 ```bash
@@ -69,7 +71,8 @@ docker run --rm -p 8501:8501 streamlit-dashboard
 # Visit http://localhost:8501
 ```
 
-### Example 3: ML dev container (10 minutes)
+### Lab 3: ML dev container
+
 Create, customize, and publish your own ML development environment.
 
 ```bash

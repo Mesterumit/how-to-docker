@@ -3,7 +3,7 @@ Lab 2: Streamlit dashboard container
 
 .. note::
    
-   📁 `View lab files on GitHub <https://github.com/siderealyear/how-to-docker/tree/main/02-streamlit-app>`_
+   📁 `View lab files on GitHub <https://github.com/gperdrizet/how-to-docker/tree/main/02-streamlit-app>`_
 
 Learning objectives
 -------------------
