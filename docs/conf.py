@@ -49,3 +49,6 @@ myst_enable_extensions = [
     "colon_fence",
     "deflist",
 ]
+
+# Make external links open in new tabs
+myst_links_external_new_tab = True

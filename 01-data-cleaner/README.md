@@ -1,6 +1,6 @@
 # Lab 1: Data cleaner container
 
-[📚 Full Tutorial](https://siderealyear.github.io/how-to-docker/lab-01-data-cleaner.html)
+[📚 Full Tutorial](https://gperdrizet.github.io/how-to-docker/lab-01-data-cleaner.html)
 
 ## Overview
 
@@ -27,4 +27,4 @@ docker run --rm -v "$(pwd)/data:/data" data-cleaner
 
 ## For full step-by-step instructions
 
-See the [complete tutorial](https://siderealyear.github.io/how-to-docker/example-01-data-cleaner.html) with detailed explanations and platform-specific commands.
+See the [complete tutorial](https://gperdrizet.github.io/how-to-docker/lab-01-data-cleaner.html) with detailed explanations and platform-specific commands.

@@ -8,7 +8,7 @@ This hands-on introduction to Docker for AI/ML (~1 hour) covers containerization
 
 ## Tutorial site
 
-Visit the full tutorial at: **[GitHub Pages Site](https://siderealyear.github.io/how-to-docker/)**
+Visit the full tutorial at: **[GitHub Pages Site](https://gperdrizet.github.io/how-to-docker/)**
 
 ## What you'll learn
 
@@ -100,7 +100,7 @@ To enable the tutorial website:
 3. Branch: `main` / root
 4. Save
 
-The site will be available at: `https://siderealyear.github.io/how-to-docker/`
+The site will be available at: `https://gperdrizet.github.io/how-to-docker/`
 
 ## Building documentation locally
 

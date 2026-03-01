@@ -1,6 +1,6 @@
 # Lab 2: Streamlit dashboard container
 
-[📚 Full Tutorial](https://siderealyear.github.io/how-to-docker/lab-02-streamlit-app.html)
+[📚 Full Tutorial](https://gperdrizet.github.io/how-to-docker/lab-02-streamlit-app.html)
 
 ## Overview
 
@@ -26,4 +26,4 @@ Then visit http://localhost:8501 in your browser.
 
 ## For full step-by-step instructions
 
-See the [complete tutorial](https://siderealyear.github.io/how-to-docker/example-02-streamlit-app.html) with detailed explanations, port mapping variations, and detached mode usage.
+See the [complete tutorial](https://gperdrizet.github.io/how-to-docker/lab-02-streamlit-app.html) with detailed explanations, port mapping variations, and detached mode usage.

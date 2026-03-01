@@ -1,6 +1,6 @@
 # Lab 3: ML development container
 
-[📚 Full Tutorial](https://siderealyear.github.io/how-to-docker/lab-03-ml-dev-container.html)
+[📚 Full Tutorial](https://gperdrizet.github.io/how-to-docker/lab-03-ml-dev-container.html)
 
 ## Overview
 
@@ -26,7 +26,7 @@ docker run --rm -v "$(pwd):/workspace" ml-dev-env python test_environment.py
 
 ## Tutorial structure
 
-The [complete tutorial](https://siderealyear.github.io/how-to-docker/example-03-ml-dev-container.html) walks through:
+The [complete tutorial](https://gperdrizet.github.io/how-to-docker/lab-03-ml-dev-container.html) walks through:
 
 - **Part 1**: Build and test your development image
 - **Part 2**: Customize with your preferred ML packages
@@ -36,4 +36,4 @@ The [complete tutorial](https://siderealyear.github.io/how-to-docker/example-03-
 
 ## For full step-by-step instructions
 
-See the [complete tutorial](https://siderealyear.github.io/how-to-docker/example-03-ml-dev-container.html) with detailed explanations, platform-specific commands, and configuration examples.
+See the [complete tutorial](https://gperdrizet.github.io/how-to-docker/lab-03-ml-dev-container.html) with detailed explanations, platform-specific commands, and configuration examples.
