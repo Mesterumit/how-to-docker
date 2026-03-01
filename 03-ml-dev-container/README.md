@@ -1,6 +1,6 @@
 # Lab 3: ML development container
 
-[📚 Full Tutorial](https://gperdrizet.github.io/how-to-docker/lab-03-ml-dev-container.html)
+[Full Tutorial](https://gperdrizet.github.io/how-to-docker/lab-03-ml-dev-container.html)
 
 ## Overview
 

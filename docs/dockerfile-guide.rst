@@ -147,13 +147,13 @@ Docker caches each layer. Order instructions from least to most frequently chang
 
 .. code-block:: dockerfile
 
-   # ✅ Good - dependencies change less often than code
+   # Good - dependencies change less often than code
    FROM python:3.11-slim
    COPY requirements.txt .
    RUN pip install -r requirements.txt
    COPY . .
 
-   # ❌ Bad - code changes invalidate dependency cache
+   # Bad - code changes invalidate dependency cache
    FROM python:3.11-slim
    COPY . .
    RUN pip install -r requirements.txt
@@ -165,12 +165,12 @@ Combine related ``RUN`` commands:
 
 .. code-block:: dockerfile
 
-   # ✅ Good - one layer
+   # Good - one layer
    RUN apt-get update && \
        apt-get install -y git curl && \
        rm -rf /var/lib/apt/lists/*
 
-   # ❌ Bad - three layers
+   # Bad - three layers
    RUN apt-get update
    RUN apt-get install -y git curl
    RUN rm -rf /var/lib/apt/lists/*
@@ -213,10 +213,10 @@ Specific tags
 
 .. code-block:: dockerfile
 
-   # ✅ Good - reproducible
+   # Good - reproducible
    FROM python:3.11.5-slim
 
-   # ❌ Bad - breaks when "latest" updates
+   # Bad - breaks when "latest" updates
    FROM python:latest
 
 Security

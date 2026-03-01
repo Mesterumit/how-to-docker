@@ -3,7 +3,7 @@ Lab 3: ML development container
 
 .. note::
    
-   📁 `View lab files on GitHub <https://github.com/gperdrizet/how-to-docker/tree/main/03-ml-dev-container>`_
+   `View lab files on GitHub <https://github.com/gperdrizet/how-to-docker/tree/main/03-ml-dev-container>`_
 
 Learning objectives
 -------------------

@@ -3,7 +3,7 @@ Docker for AI/ML
 
 Hands-on introduction to containerization for machine learning and data science.
 
-**What you'll build**: Through three progressive examples (30-45 minutes), you'll containerize data processing scripts, web applications, and finally create your own publishable ML development environment.
+**What you'll build**: Through three hands-on labs (~1 hour), you'll containerize data processing scripts, web applications, and finally create your own publishable ML development environment.
 
 .. note::
    

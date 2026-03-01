@@ -1,6 +1,6 @@
 # Lab 1: Data cleaner container
 
-[📚 Full Tutorial](https://gperdrizet.github.io/how-to-docker/lab-01-data-cleaner.html)
+[Full Tutorial](https://gperdrizet.github.io/how-to-docker/lab-01-data-cleaner.html)
 
 ## Overview
 

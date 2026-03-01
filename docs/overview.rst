@@ -38,7 +38,7 @@ In production machine learning systems, containerization simplifies building rel
        K[Client Applications] --> G
        G --> F
 
-**Key Benefits:**
+**Key benefits:**
 
 - **Reproducibility**: Exact dependencies across all environments
 - **Modularity**: Independent scaling and updates of components

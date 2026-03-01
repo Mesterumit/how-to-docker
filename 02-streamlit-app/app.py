@@ -4,11 +4,11 @@ import plotly.express as px
 
 st.set_page_config(
     page_title="Data Insights Dashboard",
-    page_icon="📊",
+    page_icon="�",
     layout="wide"
 )
 
-st.title("📊 Data Insights Dashboard")
+st.title("Data Insights Dashboard")
 st.markdown("*A containerized Streamlit application for data visualization*")
 
 st.sidebar.header("Configuration")
@@ -19,10 +19,10 @@ uploaded_file = st.sidebar.file_uploader("Upload CSV file", type=['csv'])
 # Use default data if no file uploaded
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
-    st.sidebar.success("✅ File uploaded successfully!")
+    st.sidebar.success("File uploaded successfully!")
 else:
     # Create sample data
-    st.sidebar.info("ℹ️ Using sample data. Upload a CSV to analyze your own data.")
+    st.sidebar.info("Using sample data. Upload a CSV to analyze your own data.")
     df = pd.DataFrame({
         'name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank', 'Grace', 'Henry'],
         'age': [25, 30, 35, 27, 28, 32, 29, 31],
@@ -45,7 +45,7 @@ with col3:
     st.metric("Numeric Columns", len(numeric_cols))
 
 # Display raw data
-with st.expander("📋 View Raw Data"):
+with st.expander("View Raw Data"):
     st.dataframe(df, use_container_width=True)
 
 # Statistical summary
@@ -59,7 +59,7 @@ st.header("Visualizations")
 numeric_columns = df.select_dtypes(include=['number']).columns.tolist()
 
 if len(numeric_columns) >= 1:
-    tab1, tab2, tab3 = st.tabs(["📈 Distribution", "📊 Comparison", "🔍 Correlation"])
+    tab1, tab2, tab3 = st.tabs(["Distribution", "Comparison", "Correlation"])
     
     with tab1:
         st.subheader("Distribution Plot")
@@ -114,7 +114,7 @@ if len(numeric_columns) >= 1:
             st.info("Need at least 2 numeric columns for correlation analysis.")
 
 else:
-    st.warning("⚠️ No numeric columns found in the dataset.")
+    st.warning("No numeric columns found in the dataset.")
 
 # Data filtering
 st.header("Data Filtering")
@@ -140,7 +140,7 @@ if len(numeric_columns) > 0:
 # Footer
 st.markdown("---")
 st.markdown("""
-**💡 Tip**: This Streamlit app is running inside a Docker container! 
+**Tip**: This Streamlit app is running inside a Docker container! 
 The container isolates the application and its dependencies, making it portable across any environment.
 
 You can also load data from the course repository by mounting it as a volume when running the container.

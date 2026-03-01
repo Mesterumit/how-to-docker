@@ -3,7 +3,7 @@ Lab 1: Data cleaner container
 
 .. note::
    
-   📁 `View lab files on GitHub <https://github.com/gperdrizet/how-to-docker/tree/main/01-data-cleaner>`_
+   `View lab files on GitHub <https://github.com/gperdrizet/how-to-docker/tree/main/01-data-cleaner>`_
 
 Learning objectives
 -------------------

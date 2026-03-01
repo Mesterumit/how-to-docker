@@ -1,6 +1,6 @@
 # Lab 2: Streamlit dashboard container
 
-[📚 Full Tutorial](https://gperdrizet.github.io/how-to-docker/lab-02-streamlit-app.html)
+[Full Tutorial](https://gperdrizet.github.io/how-to-docker/lab-02-streamlit-app.html)
 
 ## Overview
 
