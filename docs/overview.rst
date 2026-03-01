@@ -49,13 +49,11 @@ In production machine learning systems, containerization simplifies building rel
 What you'll build
 -----------------
 
-Through three progressive examples, you'll:
+Through three hands-on labs (~1 hour total), you'll:
 
-1. **Data Cleaner** (3 min): A containerized pandas-based data processing component demonstrating modular ML pipeline components
-2. **Streamlit Dashboard** (5 min): An interactive web app showing port mapping and container networking
-3. **ML Dev Container** (10 min): Your own customized, publishable development environment for course projects
-
-**Total time**: 30-45 minutes
+1. **Data Cleaner**: A containerized pandas-based data processing component demonstrating modular ML pipeline components
+2. **Streamlit Dashboard**: An interactive web app showing port mapping and container networking
+3. **ML Dev Container**: Your own customized, publishable development environment for course projects
 
 Prerequisites
 -------------
@@ -71,4 +69,4 @@ Before starting, ensure you have:
 Ready to start?
 ---------------
 
-Head to :doc:`concepts` to understand the fundamentals, or jump straight to :doc:`example-01-data-cleaner` if you're already familiar with Docker basics.
+Head to :doc:`concepts` to understand the fundamentals, or jump straight to :doc:`lab-01-data-cleaner` if you're already familiar with Docker basics.

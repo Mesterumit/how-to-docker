@@ -1,7 +1,9 @@
-Example 2: Streamlit dashboard container
-==========================================
+Lab 2: Streamlit dashboard container
+=====================================
 
-**Time to complete**: ~5 minutes
+.. note::
+   
+   📁 `View lab files on GitHub <https://github.com/siderealyear/how-to-docker/tree/main/02-streamlit-app>`_
 
 Learning objectives
 -------------------
@@ -42,7 +44,7 @@ Navigate to the example directory:
 
    cd 02-streamlit-app
 
-Notice new elements compared to Example 1:
+Notice new elements compared to Lab 1:
 
 .. code-block:: dockerfile
 
@@ -228,11 +230,11 @@ Experiment further
 What's next?
 ------------
 
-In :doc:`example-03-ml-dev-container`, you'll build a complete development environment container, customize it for ML work, publish it to Docker Hub, and launch it in GitHub Codespaces!
+In :doc:`lab-03-ml-dev-container`, you'll build a complete development environment container, customize it for ML work, publish it to Docker Hub, and launch it in GitHub Codespaces!
 
 ---
 
-**Time check**: This example should take about 5 minutes. Common issues:
+**Common issues**:
 
 - **Port already in use**: Change the host port: ``-p 8502:8501``
 - **Browser doesn't load**: Wait 5-10 seconds for Streamlit to start, check ``docker logs``

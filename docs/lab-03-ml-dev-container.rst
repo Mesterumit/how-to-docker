@@ -1,7 +1,9 @@
-Example 3: ML development container
-=====================================
+Lab 3: ML development container
+================================
 
-**Time to complete**: ~10 minutes
+.. note::
+   
+   📁 `View lab files on GitHub <https://github.com/siderealyear/how-to-docker/tree/main/03-ml-dev-container>`_
 
 Learning objectives
 -------------------
@@ -37,8 +39,6 @@ From now on, anyone can start developing in seconds with the exact same environm
 Part 1: Build and test your development image
 ----------------------------------------------
 
-Time: ~3 minutes
-
 1. Examine the Dockerfile
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -48,7 +48,7 @@ Navigate to the example directory and open the Dockerfile:
 
    cd 03-ml-dev-container
 
-Notice the structure - similar to examples 1 and 2, but designed for development:
+Notice the structure - similar to labs 1 and 2, but designed for development:
 
 .. code-block:: dockerfile
 
@@ -141,8 +141,6 @@ Type ``exit`` to leave the container.
 Part 2: Customize your environment
 -----------------------------------
 
-Time: ~2 minutes
-
 5. Add your preferred packages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -192,8 +190,6 @@ Note: We're now tagging with a version number using semantic versioning!
 Part 3: Publish to Docker Hub
 ------------------------------
 
-Time: ~2 minutes
-
 7. Tag for Docker Hub
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -236,8 +232,6 @@ Visit ``https://hub.docker.com/r/YOUR_DOCKERHUB_USERNAME/ml-dev-env`` to see you
 
 Part 4: Use your image as a VS Code dev container
 --------------------------------------------------
-
-Time: ~2 minutes
 
 **New concept**: Instead of running containers manually, VS Code can use your image as a complete development environment with your editor, extensions, and tools integrated.
 
@@ -284,8 +278,6 @@ VS Code now runs inside your container! Any code you write, any terminal command
 
 Part 5: Verify portability with GitHub Codespaces
 --------------------------------------------------
-
-Time: ~1 minute
 
 Now for the ultimate test: proving your environment works anywhere!
 
@@ -440,13 +432,5 @@ You're now ready to:
 - Create CI/CD pipelines that build and push containers automatically
 
 ---
-
-**Time check**: This example targets 10 minutes total:
-
-- Part 1 (Build & test): ~3 min
-- Part 2 (Customize): ~2 min
-- Part 3 (Publish): ~2 min
-- Part 4 (Dev containers): ~2 min
-- Part 5 (Codespaces): ~1 min
 
 **Congratulations!** You've completed the Docker tutorial. You now understand containerization fundamentals and have a production-ready development environment published and ready to use!

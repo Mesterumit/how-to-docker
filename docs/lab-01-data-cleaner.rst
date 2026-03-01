@@ -1,7 +1,9 @@
-Example 1: Data cleaner container
-===================================
+Lab 1: Data cleaner container
+==============================
 
-**Time to complete**: ~3 minutes
+.. note::
+   
+   📁 `View lab files on GitHub <https://github.com/siderealyear/how-to-docker/tree/main/01-data-cleaner>`_
 
 Learning objectives
 -------------------
@@ -192,11 +194,11 @@ Try these modifications:
 What's next?
 ------------
 
-In :doc:`example-02-streamlit-app`, you'll containerize an interactive web application and learn about port mapping to access apps running inside containers.
+In :doc:`lab-02-streamlit-app`, you'll containerize an interactive web application and learn about port mapping to access apps running inside containers.
 
 ---
 
-**Time check**: You should complete this example in about 3 minutes. If you're stuck, check that:
+**Troubleshooting**: If you're stuck, check that:
 
 - Docker Desktop is running
 - You're in the ``01-data-cleaner/`` directory

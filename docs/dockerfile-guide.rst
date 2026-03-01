@@ -350,8 +350,8 @@ Check build context size
 Next steps
 ----------
 
-Now that you understand Dockerfiles, try building the examples:
+Now that you understand Dockerfiles, try the hands-on labs:
 
-1. :doc:`example-01-data-cleaner` - Basic Dockerfile
-2. :doc:`example-02-streamlit-app` - Web app with port mapping
-3. :doc:`example-03-ml-dev-container` - Dev container configuration
+1. :doc:`lab-01-data-cleaner` - Basic Dockerfile
+2. :doc:`lab-02-streamlit-app` - Web app with port mapping
+3. :doc:`lab-03-ml-dev-container` - Dev container configuration

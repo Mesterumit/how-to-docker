@@ -309,4 +309,4 @@ Break complex ML pipelines into independent containerized components that can be
 Next steps
 ----------
 
-Now that you understand the concepts, proceed to :doc:`dockerfile-guide` to learn how to write effective Dockerfiles, or jump straight to :doc:`example-01-data-cleaner` to start building!
+Now that you understand the concepts, proceed to :doc:`dockerfile-guide` to learn how to write effective Dockerfiles, or jump straight to :doc:`lab-01-data-cleaner` to start building!
