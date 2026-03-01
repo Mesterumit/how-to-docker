@@ -190,17 +190,33 @@ Add these options to any mode:
 
    # Run with port mapping
    docker run -p 8080:80 my-image
-   
-   # Run with volume mount (Linux/macOS)
-   docker run -v $(pwd):/app my-image
-   
-   # Run with volume mount (Windows PowerShell)
-   docker run -v ${PWD}:/app my-image
-   
-   # Run with volume mount (Windows Command Prompt)
-   docker run -v %cd%:/app my-image
 
-**Note for Windows users**: When using volume mounts with absolute paths, use forward slashes and include the drive letter: ``-v C:/Users/yourname/project:/app``
+**Volume mount examples:**
+
+.. tab-set::
+
+   .. tab-item:: Linux/macOS
+
+      .. code-block:: bash
+
+         # Mount current directory
+         docker run -v $(pwd):/app my-image
+
+   .. tab-item:: Windows PowerShell
+
+      .. code-block:: powershell
+
+         # Mount current directory
+         docker run -v ${PWD}:/app my-image
+
+   .. tab-item:: Windows CMD
+
+      .. code-block:: batch
+
+         # Mount current directory
+         docker run -v %cd%:/app my-image
+
+**Note for Windows users**: When using absolute paths, use forward slashes and include the drive letter: ``-v C:/Users/yourname/project:/app``
 
 Managing containers
 ~~~~~~~~~~~~~~~~~~~
@@ -293,4 +309,4 @@ Break complex ML pipelines into independent containerized components that can be
 Next steps
 ----------
 
-Now that you understand the concepts, proceed to :doc:`/introduction/dockerfile-guide` to learn how to write effective Dockerfiles, or jump straight to :doc:`/examples/01-data-cleaner` to start building!
+Now that you understand the concepts, proceed to :doc:`dockerfile-guide` to learn how to write effective Dockerfiles, or jump straight to :doc:`example-01-data-cleaner` to start building!

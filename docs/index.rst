@@ -16,12 +16,6 @@ Hands-on introduction to containerization for machine learning and data science.
    overview
    concepts
    dockerfile-guide
-   examples/01-data-cleaner
-   examples/02-streamlit-app
-   examples/03-ml-dev-container
-   guides/dev-containers
-   guides/publishing-images
-   guides/codespaces
-   resources/troubleshooting
-   resources/next-steps
-   resources/faq
+   example-01-data-cleaner
+   example-02-streamlit-app
+   example-03-ml-dev-container

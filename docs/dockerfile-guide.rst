@@ -352,6 +352,6 @@ Next steps
 
 Now that you understand Dockerfiles, try building the examples:
 
-1. :doc:`/examples/01-data-cleaner` - Basic Dockerfile
-2. :doc:`/examples/02-streamlit-app` - Web app with port mapping
-3. :doc:`/examples/03-ml-dev-container` - Dev container configuration
+1. :doc:`example-01-data-cleaner` - Basic Dockerfile
+2. :doc:`example-02-streamlit-app` - Web app with port mapping
+3. :doc:`example-03-ml-dev-container` - Dev container configuration

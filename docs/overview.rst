@@ -71,4 +71,4 @@ Before starting, ensure you have:
 Ready to start?
 ---------------
 
-Head to :doc:`Docker concepts </introduction/concepts>` to understand the fundamentals, or jump straight to :doc:`Example 1 </examples/01-data-cleaner>` if you're already familiar with Docker basics.
+Head to :doc:`concepts` to understand the fundamentals, or jump straight to :doc:`example-01-data-cleaner` if you're already familiar with Docker basics.

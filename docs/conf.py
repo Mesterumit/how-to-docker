@@ -12,6 +12,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'myst_parser',  # For Markdown support
     'sphinxcontrib.mermaid',  # For Mermaid diagrams
+    'sphinx_design',  # For tabs and other design elements
 ]
 
 # Add any paths that contain templates here, relative to this directory.
