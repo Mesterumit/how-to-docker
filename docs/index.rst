@@ -7,15 +7,15 @@ Hands-on introduction to containerization for machine learning and data science.
 
 .. note::
    
-   Start with the :doc:`introduction/overview` for an introduction to containerization.
+   Start with the :doc:`overview` for an introduction to containerization.
 
 .. toctree::
    :maxdepth: 2
    :caption: Outline
 
-   introduction/overview
-   introduction/concepts
-   introduction/dockerfile-guide
+   overview
+   concepts
+   dockerfile-guide
    examples/01-data-cleaner
    examples/02-streamlit-app
    examples/03-ml-dev-container

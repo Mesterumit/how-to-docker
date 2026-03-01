@@ -62,6 +62,8 @@ Specifies the default command to run when a container starts.
 
 **Note**: Only one ``CMD`` per Dockerfile. Easily overridden at runtime.
 
+**Important**: Containers run as long as the command is running. When the command exits, the container stops. If you don't specify a ``CMD`` (or run with ``-it`` for interactive mode), the container will start and immediately exit. For long-running services like web apps, the ``CMD`` should start a server that keeps running. For batch jobs, the container exits when processing completes.
+
 EXPOSE
 ~~~~~~
 

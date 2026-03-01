@@ -119,11 +119,75 @@ Building images
 Running containers
 ~~~~~~~~~~~~~~~~~~
 
+Docker containers can run in different modes depending on your use case. Understanding these modes helps you choose the right approach for your task.
+
+**Attached mode (default)**
+
+When you run a container without special flags, it runs in the foreground, showing output directly in your terminal:
+
 .. code-block:: bash
 
-   # Run container
+   # Run and see output in real-time
    docker run my-image
+
+Use attached mode for:
+
+- Batch jobs and data processing tasks where you want to monitor progress
+- Testing containers to see immediate output
+- Short-running tasks that complete and exit
+
+Press ``Ctrl+C`` to stop the container and return to your terminal.
+
+**Detached mode**
+
+The ``-d`` flag runs containers in the background, freeing your terminal:
+
+.. code-block:: bash
+
+   # Start container in background
+   docker run -d --name my-container my-image
    
+   # View logs from detached container
+   docker logs my-container
+   
+   # Follow logs in real-time
+   docker logs -f my-container
+   
+   # Attach to a running detached container
+   docker attach my-container
+
+Use detached mode for:
+
+- Web servers and APIs (like Streamlit apps)
+- Long-running services that don't need constant monitoring
+- Background processing tasks
+
+**Interactive mode**
+
+The ``-it`` flags (interactive + terminal) let you interact with a container via shell:
+
+.. code-block:: bash
+
+   # Start container with interactive shell
+   docker run -it my-image /bin/bash
+   
+   # Execute commands in already-running container
+   docker exec -it my-container bash
+
+Use interactive mode for:
+
+- Development and debugging inside the container
+- Exploring the container's filesystem
+- Running commands manually for testing
+
+Type ``exit`` to leave the shell and stop the container.
+
+**Port mapping and volume mounts**
+
+Add these options to any mode:
+
+.. code-block:: bash
+
    # Run with port mapping
    docker run -p 8080:80 my-image
    
@@ -135,12 +199,6 @@ Running containers
    
    # Run with volume mount (Windows Command Prompt)
    docker run -v %cd%:/app my-image
-   
-   # Run in detached mode
-   docker run -d --name my-container my-image
-   
-   # Run interactively with shell
-   docker run -it my-image /bin/bash
 
 **Note for Windows users**: When using volume mounts with absolute paths, use forward slashes and include the drive letter: ``-v C:/Users/yourname/project:/app``
 
