@@ -8,7 +8,8 @@ WORKDIR /app
 RUN pip install --no-cache-dir \
     streamlit \
     pandas \
-    plotly
+    plotly \
+    psutil
 
 # Copy application code
 COPY app.py .

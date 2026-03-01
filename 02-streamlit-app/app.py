@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import psutil
+import os
+import socket
 
 st.set_page_config(
     page_title="Data Insights Dashboard",
@@ -136,6 +139,91 @@ if len(numeric_columns) > 0:
     
     st.write(f"Showing {len(filtered_df)} of {len(df)} rows")
     st.dataframe(filtered_df, use_container_width=True)
+
+# Container Introspection
+st.header("Container Introspection")
+st.markdown("*This app is aware it's running in a container!*")
+
+st.subheader("Container Identity")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    # Container ID (hostname)
+    container_id = socket.gethostname()
+    st.metric("Container ID", container_id[:12] + "...")
+
+with col2:
+    # Process ID
+    pid = os.getpid()
+    st.metric("Process ID", pid, help="In containers, the main app is typically PID 1")
+
+# Environment variables
+with st.expander("Environment Variables (Container Isolation)"):
+    env_vars = dict(os.environ)
+    # Filter to show interesting container-related vars
+    container_vars = {k: v for k, v in env_vars.items() 
+                     if any(x in k.upper() for x in ['STREAMLIT', 'PYTHON', 'PATH', 'HOME', 'HOSTNAME'])}
+    
+    if container_vars:
+        st.json(container_vars)
+    else:
+        st.write("No container-specific environment variables found.")
+
+# Process tree
+with st.expander("Process Tree (This App is PID 1!)"):
+    st.markdown("""
+    In a container, the main application typically runs as **PID 1** - the init process.
+    This is different from running on a host where init/systemd is PID 1.
+    """)
+    
+    try:
+        processes = []
+        for proc in psutil.process_iter(['pid', 'name', 'cmdline']):
+            try:
+                info = proc.info
+                cmdline = ' '.join(info['cmdline'][:3]) if info['cmdline'] else info['name']
+                processes.append({
+                    'PID': info['pid'],
+                    'Name': info['name'],
+                    'Command': cmdline[:80]
+                })
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                pass
+        
+        if processes:
+            proc_df = pd.DataFrame(processes).sort_values('PID')
+            st.dataframe(proc_df, use_container_width=True, hide_index=True)
+    except Exception as e:
+        st.warning(f"Could not read process information: {e}")
+
+# Visual diagram
+st.subheader("You Are Here")
+st.markdown("""
+```
+┌─────────────────────────────────────────┐
+│          Your Host Machine              │
+│  ┌───────────────────────────────────┐  │
+│  │    Docker Container (isolated)    │  │
+│  │                                   │  │
+│  │  ┌─────────────────────────────┐  │  │
+│  │  │   Streamlit App (PID 1)     │  │  │
+│  │  │                             │  │  │
+│  │  │   ← You are viewing this!   │  │  │
+│  │  └─────────────────────────────┘  │  │
+│  │                                   │  │
+│  │  Isolated: Network | Files | PIDs │  │
+│  └───────────────────────────────────┘  │
+│                                         │
+└─────────────────────────────────────────┘
+```
+""")
+
+st.info("""
+**What this shows**: Containers are just Linux processes with namespaces. This app can see 
+its own container ID, resource usage, and process isolation - proving it's running in a 
+sandboxed environment separate from your host machine!
+""")
 
 # Footer
 st.markdown("---")
