@@ -49,11 +49,11 @@ with col3:
 
 # Display raw data
 with st.expander("View Raw Data"):
-    st.dataframe(df, use_container_width=True)
+    st.dataframe(df, width='stretch')
 
 # Statistical summary
 st.header("Statistical Summary")
-st.dataframe(df.describe(), use_container_width=True)
+st.dataframe(df.describe(), width='stretch')
 
 # Visualizations
 st.header("Visualizations")
@@ -76,7 +76,7 @@ if len(numeric_columns) >= 1:
             color_discrete_sequence=['#636EFA']
         )
         fig.update_layout(showlegend=False)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
     
     with tab2:
         st.subheader("Column Comparison")
@@ -95,7 +95,7 @@ if len(numeric_columns) >= 1:
                 title=f"{x_col} vs {y_col}",
                 color_discrete_sequence=['#EF553B']
             )
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
         else:
             st.info("Need at least 2 numeric columns for comparison plots.")
     
@@ -112,7 +112,7 @@ if len(numeric_columns) >= 1:
                 title="Correlation Matrix",
                 color_continuous_scale='RdBu_r'
             )
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
         else:
             st.info("Need at least 2 numeric columns for correlation analysis.")
 
@@ -138,7 +138,7 @@ if len(numeric_columns) > 0:
     filtered_df = df[(df[filter_col] >= range_val[0]) & (df[filter_col] <= range_val[1])]
     
     st.write(f"Showing {len(filtered_df)} of {len(df)} rows")
-    st.dataframe(filtered_df, use_container_width=True)
+    st.dataframe(filtered_df, width='stretch')
 
 # Container Introspection
 st.header("Container Introspection")
@@ -193,7 +193,7 @@ with st.expander("Process Tree (This App is PID 1!)"):
         
         if processes:
             proc_df = pd.DataFrame(processes).sort_values('PID')
-            st.dataframe(proc_df, use_container_width=True, hide_index=True)
+            st.dataframe(proc_df, width='stretch', hide_index=True)
     except Exception as e:
         st.warning(f"Could not read process information: {e}")
 
