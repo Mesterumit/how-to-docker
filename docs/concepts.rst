@@ -246,6 +246,14 @@ Managing containers
    # Execute command in running container
    docker exec -it container-name bash
 
+**Tip**: Customize the default ``docker ps`` output by adding a ``psFormat`` entry to ``~/.docker/config.json``:
+
+.. code-block:: json
+
+   {
+     "psFormat": "table {{.Names}}\\t{{truncate .Image 25}}\\t{{.Status}}"
+   }
+
 Managing images
 ~~~~~~~~~~~~~~~
 
