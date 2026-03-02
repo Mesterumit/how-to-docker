@@ -108,6 +108,17 @@ Try these features:
 - Compare numeric columns
 - View correlation heatmap
 - Filter data with the slider
+- **Scroll down to see Container Introspection** - the app shows it's aware it's running in a container!
+
+The **Container Introspection** section is particularly cool - it displays:
+
+- The container's unique ID (hostname)
+- The app's process ID (typically PID 1 in containers)
+- Process tree showing all processes in the container's namespace
+- Environment variables proving isolation
+- A visual "You Are Here" diagram
+
+This demonstrates that containers are just isolated Linux processes with their own namespaces!
 
 6. Load your own data (optional)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
