@@ -20,10 +20,10 @@ A running instance of an image. Containers are isolated processes that run your 
 
 .. mermaid::
 
-   %%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#e3f2fd','primaryTextColor':'#000000','primaryBorderColor':'#000000','lineColor':'#000000','secondaryColor':'#fff3e0','tertiaryColor':'#f1f8e9','fontSize':'26px'}}}%%
+   %%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#e3f2fd','primaryTextColor':'#000000','primaryBorderColor':'#000000','lineColor':'#000000','secondaryColor':'#fff3e0','tertiaryColor':'#f1f8e9','fontSize':'32px'}}}%%
    graph TB
        subgraph "Host Machine"
-           K[Linux Kernel]
+           K[Host Kernel]
            DE[Docker Engine]
            
            subgraph "Container 1"
@@ -58,6 +58,11 @@ A container is NOT a virtual machine. It's an isolated process on your host OS t
 
 **Key difference from VMs**: Containers don't include a full operating system - they share the host's kernel but are isolated through Linux namespaces and cgroups.
 
+Host
+~~~~
+
+The physical or virtual machine where Docker is installed and running. The host provides the kernel that containers share and the resources (CPU, memory, storage) that containers use.
+
 Dockerfile
 ~~~~~~~~~~
 
@@ -86,7 +91,7 @@ Tag
 
 A label for different versions of an image (e.g., ``v1.0``, ``latest``). Tags help manage versions and deployments.
 
-**Best practice**: Use semantic versioning (``v1.0.0``) for production images
+**Best practice**: Use `semantic versioning <https://semver.org/>`_ (``v1.0.0``) for production images
 
 Volume
 ~~~~~~
