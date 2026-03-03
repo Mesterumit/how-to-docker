@@ -7,8 +7,8 @@ WORKDIR /app
 # Install pandas
 RUN pip install --no-cache-dir pandas
 
-# Copy the cleaning script
-COPY clean_data.py .
+# Copy the cleaning script ,"." means into current working directory
+COPY clean_data.py . 
 
 # Create directories for data
 RUN mkdir -p /data/input /data/output
